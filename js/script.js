@@ -11,8 +11,6 @@ function playGame(playerInput)
 		} else if(argMoveId == 3) {
 		  return 'nożyce';
 		}
-		// printMessage('Nie znam ruchu o id ' + argMoveId + '.');
-		return 'ani kamień, ani papier, ani nożyce';
 	}
 
 	function displayResult(argComputerMove,argPlayerMove,argPlayerInput)
@@ -22,23 +20,26 @@ function playGame(playerInput)
 		// wygrana gracza, który zagrał kamień, jeśli drugi gracz zagrał nożyce,
 		// wygrana gracza, który zagrał nożyce, jeśli drugi gracz zagrał papier.
 
-		if  (argPlayerMove == 'ani kamień, ani papier, ani nożyce')
-		{
-		  printMessage('Partia nierozstrzygnięta, bo wpisałeś "' + argPlayerInput + '".'); 
-		} 
-		else if (argComputerMove == argPlayerMove) 
+		if (argComputerMove == argPlayerMove) 
 		{
 		  printMessage('Remis!');
+		  return('remis');
 		} 
-		else if ((argComputerMove == 'papier' && argPlayerMove == 'kamień') || 
-				 (argComputerMove == 'kamień' && argPlayerMove == 'nożyce') ||
-				 (argComputerMove == 'nożyce' && argPlayerMove == 'papier'))
+		else if ((argComputerMove == 'papier' && argPlayerMove == 'kamień') || (argComputerMove == 'kamień' && argPlayerMove == 'nożyce') || (argComputerMove == 'nożyce' && argPlayerMove == 'papier'))
 		{
 		  printMessage('Ja wygrywam!');
+		  return('komp');
 		} else {
 		  printMessage('Ty wygrywasz!');
+		  return ('gracz')
 		}
 	}
+
+	// Deklaracja zmiennych
+
+	let winnerCheck = '';
+
+	// Początek algorytmu funkcji
 
 	clearMessages();
 	
@@ -56,38 +57,74 @@ function playGame(playerInput)
 
 	// Sprawdzenie i podanie wyniku
 
-	displayResult(computerMove,playerMove,playerInput);
+	winnerCheck = displayResult(computerMove,playerMove,playerInput);
 
 	// Pobawmy się console.log
 
 	console.log('### Sprawdzamy wartości :');
 	console.log('Komp wylosował: ', randomNumber);
-	console.log('Gracz wpisał: ', playerInput);
-	console.log('Co zwraca getMoveName dla playerInput (',playerInput,'): ', getMoveName(playerInput));
-	console.log('Co zwraca getMoveName dla 1: ', getMoveName('1'));
-	console.log('Co zwraca getMoveName dla 2: ', getMoveName('2'));
-	console.log('Co zwraca getMoveName dla 3: ', getMoveName('3'));
-	console.log(' --- Koniec logu tego uruchomienia --- ');
+	console.log('Gracz kliknął: ', getMoveName(playerInput));
+	console.log('Wynik (winnerCheck):', winnerCheck);	
+
+	return(winnerCheck);
 }
 
-function buttonClicked(buttonID, buttonName){
-	clearScore();	
-	playGame(buttonID);
-//  printScore(scorePlayer,scoreComputer);
+function buttonClicked(argButtonID, argButtonName, argScoreComputer, argScorePlayer)
+{
+	let Winner = playGame(argButtonID);
+	clearScore()
+	return(Winner);
 }
 
 // Deklaracje zmiennych
 
-
+let scorePlayerTotal = '0';
+let scoreComputerTotal = '0';
 
 // Koniec deklaracji, początek właściwego skryptu
 
 let testButton1 = document.getElementById('play-rock');
-testButton1.addEventListener('click', function(){buttonClicked(1,'Kamień')});
+testButton1.addEventListener('click', function()
+{
+	let Winner = buttonClicked(1,'Kamień',scorePlayerTotal,scoreComputerTotal);	
+	if (Winner == 'komp') 
+	{
+		scoreComputerTotal++;
+	}
+	else if (Winner == 'gracz') 
+	{
+		scorePlayerTotal++;
+	}
+	printScore(scorePlayerTotal,scoreComputerTotal); 	
+});
 
 let testButton2 = document.getElementById('play-paper');
-testButton2.addEventListener('click', function(){buttonClicked(2,'Papier')});
+testButton2.addEventListener('click', function()
+{
+	let Winner = buttonClicked(2,'Papier',scorePlayerTotal,scoreComputerTotal);	
+	if (Winner == 'komp') 
+	{
+		scoreComputerTotal++;
+	}
+	else if (Winner == 'gracz') 
+	{
+		scorePlayerTotal++;
+	}
+	printScore(scorePlayerTotal,scoreComputerTotal); 	
+});
+
 
 let testButton3 = document.getElementById('play-scissors');
-testButton3.addEventListener('click', function(){buttonClicked(3,'Nożyce')});
-
+testButton3.addEventListener('click', function()
+{
+	let Winner = buttonClicked(3,'Nożyce',scorePlayerTotal,scoreComputerTotal);	
+	if (Winner == 'komp') 
+	{
+		scoreComputerTotal++;
+	}
+	else if (Winner == 'gracz') 
+	{
+		scorePlayerTotal++;
+	}
+	printScore(scorePlayerTotal,scoreComputerTotal); 	
+});

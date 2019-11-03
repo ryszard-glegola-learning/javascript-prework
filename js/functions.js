@@ -9,13 +9,13 @@ function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
 
-function clearScore(){
-	document.getElementById('score').innerHTML = '';
-}
-
-function printScore(scorePlayer,scoreComputer)  //WIP
+function printScore(argScorePlayer,argScoreComputer)  
 {
 	var div = document.createElement('div');
-	div.innerHTML = 'Gracz: ' + scorePlayer + ', Komputer: ' + scoreComputer;
+	div.innerHTML = 'Gracz: ' + argScorePlayer + ', Komputer: ' + argScoreComputer;
 	document.getElementById('score').appendChild(div);
+}
+
+function clearScore(){
+	document.getElementById('score').innerHTML = '';
 }
