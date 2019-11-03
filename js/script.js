@@ -1,5 +1,6 @@
 function playGame(playerInput) 
 {
+	clearMessages();
 	// Deklaracje funkcji
 	function getMoveName(argMoveId)
 	{
@@ -69,47 +70,22 @@ function playGame(playerInput)
 	console.log(' --- Koniec logu tego uruchomienia --- ');
 }
 
-function button1Clicked(){
-  clearMessages();
-  printMessage('Guzik KAMIEŃ został kliknięty');
-  playGame(1);
-}
-
-function button2Clicked(){
-  clearMessages();
-  printMessage('Guzik PAPIER został kliknięty');
-  playGame(2);
-}
-
-function button3Clicked(){
-  clearMessages();
-  printMessage('Guzik NOŻYCE został kliknięty');
-  playGame(3);
+function buttonClicked(buttonID, buttonName){
+  // clearMessages();
+  printMessage('Guzik ' + buttonName +' został kliknięty');
+  playGame(buttonID);
 }
 
 // clearMessages(); // Umieszczenie tutaj wywołania tej funkcji, jak kazano w lekcji, nic nie daje.
 
 let testButton1 = document.getElementById('play-rock');
-testButton1.addEventListener('click', button1Clicked);
+testButton1.addEventListener('click', function(){buttonClicked(1,'Kamień')});
 
 let testButton2 = document.getElementById('play-paper');
-testButton2.addEventListener('click', button2Clicked);
+testButton2.addEventListener('click', function(){buttonClicked(2,'Papier')});
 
 let testButton3 = document.getElementById('play-scissors');
-testButton3.addEventListener('click', button3Clicked);
+testButton3.addEventListener('click', function(){buttonClicked(3,'Nożyce')});
 
-console.log('testButton1: ', testButton1);
-console.log('testButton2: ', testButton2);
-console.log('testButton3: ', testButton3);
+// console.log('testButton1: ', testButton1);
 
-/* Surowy kod z ostatniego podmodułu:
-
-function buttonClicked(){
-  printMessage('Guzik został kliknięty');
-}
-
-let testButton = document.getElementById('test-button');
-
-testButton.addEventListener('click', buttonClicked);
-
-*/
