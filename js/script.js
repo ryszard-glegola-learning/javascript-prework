@@ -1,6 +1,6 @@
 function playGame(playerInput) 
 {
-	clearMessages();
+
 	// Deklaracje funkcji
 	function getMoveName(argMoveId)
 	{
@@ -40,19 +40,19 @@ function playGame(playerInput)
 		}
 	}
 
+	clearMessages();
+	
+	// Ruch gracza
+
+	let playerMove = getMoveName(playerInput);
+	printMessage('Twój ruch to: ' + playerInput + ', czyli ' + playerMove + '.');
+
 	// Ruch komputera
 
 	let randomNumber = Math.floor(Math.random() * 3 + 1);
 	let computerMove = getMoveName(randomNumber);
 
 	printMessage('Mój ruch to: ' + computerMove + '.');
-
-	// Ruch gracza
-
-//	let playerInput = prompt('Wybierz swój ruch! 1: kamień, 2: papier, 3: nożyce.');
-	let playerMove = getMoveName(playerInput);
-
-	printMessage('Twój ruch to: ' + playerInput + ', czyli ' + playerMove + '.');
 
 	// Sprawdzenie i podanie wyniku
 
@@ -63,20 +63,24 @@ function playGame(playerInput)
 	console.log('### Sprawdzamy wartości :');
 	console.log('Komp wylosował: ', randomNumber);
 	console.log('Gracz wpisał: ', playerInput);
+	console.log('Co zwraca getMoveName dla playerInput (',playerInput,'): ', getMoveName(playerInput));
 	console.log('Co zwraca getMoveName dla 1: ', getMoveName('1'));
 	console.log('Co zwraca getMoveName dla 2: ', getMoveName('2'));
 	console.log('Co zwraca getMoveName dla 3: ', getMoveName('3'));
-	console.log('Co zwraca getMoveName dla ', playerInput, ': ', getMoveName(playerInput));
 	console.log(' --- Koniec logu tego uruchomienia --- ');
 }
 
 function buttonClicked(buttonID, buttonName){
-  // clearMessages();
-  printMessage('Guzik ' + buttonName +' został kliknięty');
-  playGame(buttonID);
+	clearScore();	
+	playGame(buttonID);
+//  printScore(scorePlayer,scoreComputer);
 }
 
-// clearMessages(); // Umieszczenie tutaj wywołania tej funkcji, jak kazano w lekcji, nic nie daje.
+// Deklaracje zmiennych
+
+
+
+// Koniec deklaracji, początek właściwego skryptu
 
 let testButton1 = document.getElementById('play-rock');
 testButton1.addEventListener('click', function(){buttonClicked(1,'Kamień')});
@@ -86,6 +90,4 @@ testButton2.addEventListener('click', function(){buttonClicked(2,'Papier')});
 
 let testButton3 = document.getElementById('play-scissors');
 testButton3.addEventListener('click', function(){buttonClicked(3,'Nożyce')});
-
-// console.log('testButton1: ', testButton1);
 

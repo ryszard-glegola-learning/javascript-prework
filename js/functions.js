@@ -9,6 +9,10 @@ function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
 
+function clearScore(){
+	document.getElementById('score').innerHTML = '';
+}
+
 function printScore(scorePlayer,scoreComputer)  //WIP
 {
 	var div = document.createElement('div');
