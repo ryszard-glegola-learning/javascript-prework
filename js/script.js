@@ -1,16 +1,24 @@
 {
-const 	MOVE_ROCK = 'kamień',
-		MOVE_PAPER = 'papier',
-		MOVE_SCISSORS = 'nożyce',
-		WIN_DRAW = 'remis',
-		WIN_PC = 'komp',
-		WIN_PLAYER = 'gracz';
 
+	// Deklaracja stałych, które muszą być globalne
+
+	const 	MOVE_ROCK = 'kamień',
+			MOVE_PAPER = 'papier',
+			MOVE_SCISSORS = 'nożyce',
+			WIN_DRAW = 'remis',
+			WIN_PC = 'komp',
+			WIN_PLAYER = 'gracz';
+
+	// Deklaracje zmiennych, które muszą być globalne
+
+	let scorePlayerTotal = '0';
+	let scoreComputerTotal = '0';
+
+	// Deklaracje funkcji
 
 	function playGame(playerInput) 
 	{
-
-		// Deklaracje funkcji
+		
 		function getMoveName(argMoveId)
 		{
 			if(argMoveId == 1) {
@@ -44,7 +52,7 @@ const 	MOVE_ROCK = 'kamień',
 			}
 		}
 
-		// Deklaracja zmiennych
+		// Deklaracja zmiennych ograniczonych do funkcji playGame
 
 		let winnerCheck = '';
 
@@ -67,14 +75,6 @@ const 	MOVE_ROCK = 'kamień',
 		// Sprawdzenie i podanie wyniku
 
 		winnerCheck = displayResult(computerMove,playerMove,playerInput);
-
-		// Pobawmy się console.log
-
-		console.log('### Sprawdzamy wartości :');
-		console.log('Komp wylosował: ', randomNumber);
-		console.log('Gracz kliknął: ', getMoveName(playerInput));
-		console.log('Wynik (winnerCheck):', winnerCheck);	
-
 		return(winnerCheck);
 	}
 
@@ -84,11 +84,6 @@ const 	MOVE_ROCK = 'kamień',
 		clearScore()
 		return(Winner);
 	}
-
-	// Deklaracje zmiennych
-
-	let scorePlayerTotal = '0';
-	let scoreComputerTotal = '0';
 
 	// Koniec deklaracji, początek właściwego skryptu
 

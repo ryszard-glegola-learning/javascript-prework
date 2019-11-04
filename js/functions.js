@@ -12,10 +12,15 @@ function clearMessages(){
 function printScore(argScorePlayer,argScoreComputer)  
 {
 	var div = document.createElement('div');
+	div.innerHTML = '<h3>Wynik rozgrywki</h3>';
+	document.getElementById('score_header').appendChild(div);
+
+	var div = document.createElement('div');
 	div.innerHTML = 'Gracz: ' + argScorePlayer + ', Komputer: ' + argScoreComputer;
 	document.getElementById('score').appendChild(div);
 }
 
 function clearScore(){
 	document.getElementById('score').innerHTML = '';
+	document.getElementById('score_header').innerHTML = '';
 }
